@@ -64,7 +64,7 @@
         "start": "parcel ./src/index.html",
         "stylelint": "npx stylelint 'src/**/*.css'",
         "test": "jest --coverage",
-        "test:watch": "jest --watch --coverage",
+        "test:watch": "jest --watch",
         "verify": "yarn lint && yarn test"
     }
 }
