@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 
 function addToDoHandler() {
     if (this.state.description) {
-        this.props.onClick(this.state.description);
+        this.props.onAddToDo(this.state.description);
         this.setState({
             description: ''
         });
@@ -45,6 +45,5 @@ export class AddToDo extends Component {
 }
 
 AddToDo.propTypes = {
-    onChange: PropTypes.func.isRequired,
-    onClick: PropTypes.func.isRequired
+    onAddToDo: PropTypes.func.isRequired
 };

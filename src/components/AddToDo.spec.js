@@ -13,8 +13,7 @@ describe('<AddToDo/>', () => {
     function renderComponent(overrides) {
         props = {
             description: 'some value',
-            onChange: sandbox.stub(),
-            onClick: sandbox.stub(),
+            onAddToDo: sandbox.stub(),
             ...overrides
         };
 
@@ -71,7 +70,7 @@ describe('<AddToDo/>', () => {
 
                 input = component.find('input');
 
-                sinon.assert.calledWithExactly(props.onClick, event.target.value);
+                sinon.assert.calledWithExactly(props.onAddToDo, event.target.value);
                 expect(input.props().value).toEqual('');
             });
         });
@@ -88,7 +87,7 @@ describe('<AddToDo/>', () => {
 
                 button.simulate('click');
 
-                sinon.assert.notCalled(props.onClick);
+                sinon.assert.notCalled(props.onAddToDo);
             });
         });
     });
