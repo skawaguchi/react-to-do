@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 
-function addToDoHandler() {
+function addToDoHandler(event) {
+    event.preventDefault();
+
     if (this.state.description) {
         this.props.onAddToDo(this.state.description);
         this.setState({
@@ -27,19 +29,22 @@ export class AddToDo extends Component {
 
     render() {
         return (
-            <div className='add-to-do'>
+            <form
+                className='add-to-do'
+                onSubmit={addToDoHandler.bind(this)}
+            >
                 <input
                     onChange={changeDescriptionHandler.bind(this)}
-                    placeholder='Enter a task description'
+                    placeholder='Enter a To Do'
                     type='text'
                     value={this.state.description}
                 />
                 <button
-                    onClick={addToDoHandler.bind(this)}
+                    type='submit'
                 >
-                    { 'Add a To Do' }
+                    { 'Add' }
                 </button>
-            </div>
+            </form>
         );
     }
 }
