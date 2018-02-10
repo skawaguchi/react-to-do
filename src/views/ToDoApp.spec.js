@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import { ToDoApp } from './ToDoApp';
 
-describe('<HistoryStoreProvider/>', () => {
+describe('<ToDoApp/>', () => {
     let component;
 
     function renderComponent() {
@@ -11,7 +11,7 @@ describe('<HistoryStoreProvider/>', () => {
     }
 
     beforeEach(() => {
-        renderComponent(<ToDoApp/>);
+        renderComponent();
     });
 
     it('should have a container with a identifying class name', () => {
