@@ -15,6 +15,7 @@ describe('<ToDoItem/>', () => {
     function renderComponent(overrides) {
         props = {
             description: 'some label',
+            id: 'some id',
             isDone: chance.bool(),
             onDescriptionChange: sandbox.stub(),
             onDoneChange: sandbox.stub(),
@@ -59,7 +60,7 @@ describe('<ToDoItem/>', () => {
 
             checkbox.simulate('change', event);
 
-            sinon.assert.calledWithExactly(props.onDoneChange, event);
+            sinon.assert.calledWithExactly(props.onDoneChange, props.id, event);
         });
     });
 
@@ -71,7 +72,7 @@ describe('<ToDoItem/>', () => {
 
             text.simulate('change', event);
 
-            sinon.assert.calledWithExactly(props.onDescriptionChange, event);
+            sinon.assert.calledWithExactly(props.onDescriptionChange, props.id, event);
         });
     });
 });
