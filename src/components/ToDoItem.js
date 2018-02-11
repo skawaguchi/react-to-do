@@ -9,6 +9,7 @@ export function ToDoItem(props) {
     return (
         <div className='to-do-item'>
             <input
+                checked={props.isDone}
                 className='checkbox'
                 onChange={changeHandler.bind(null, props.onDoneChange, props.id)}
                 type='checkbox'

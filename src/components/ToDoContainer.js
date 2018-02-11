@@ -50,8 +50,23 @@ export class ToDoContainer extends Component {
         });
     }
 
-    onDoneChange(id, event) {
+    onDoneChange(id) {
+        const newList = this.state.list.reduce((list, item) => {
+            if (item.id === id) {
+                list.push({
+                    ...item,
+                    isDone: !item.isDone
+                });
+            } else {
+                list.push(item);
+            }
 
+            return list;
+        }, []);
+
+        this.setState({
+            list: newList
+        });
     }
 
     render() {

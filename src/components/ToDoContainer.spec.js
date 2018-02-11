@@ -114,4 +114,30 @@ describe('<ToDoContainer/>', () => {
             expect(firstListItem.description).toEqual(description);
         });
     });
+
+    describe('when a to is marked done', () => {
+        it('should show the to do as checked', () => {
+            renderComponent({
+                list: [
+                    getToDoMock({
+                        isDone: true
+                    })
+                ]
+            });
+
+            const listComponent = component.find(ToDoList);
+            const listData = listComponent.props().list;
+
+            const firstItemId = listData[0].id;
+
+            listComponent.props().onDoneChange(firstItemId);
+
+            component.update();
+
+            const list = component.find(ToDoList);
+            const firstListItem = list.props().list[0];
+
+            expect(firstListItem.isDone).toEqual(false);
+        });
+    });
 });
