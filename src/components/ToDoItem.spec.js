@@ -39,7 +39,7 @@ describe('<ToDoItem/>', () => {
             expect(component.hasClass('to-do-item')).toEqual(true);
         });
 
-        it('should have text describing the to do', () => {
+        it('should show the status of the to do', () => {
             const checkbox = component.find('input.checkbox');
 
             expect(checkbox.props().type).toEqual('checkbox');
@@ -66,7 +66,7 @@ describe('<ToDoItem/>', () => {
             });
         });
 
-        describe('when the descriptions is changed', () => {
+        describe('when the description is changed', () => {
             it('should call the description change handler', () => {
                 const text = component.find('input.description');
 

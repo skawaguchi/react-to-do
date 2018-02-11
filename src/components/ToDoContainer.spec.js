@@ -115,7 +115,7 @@ describe('<ToDoContainer/>', () => {
         });
     });
 
-    describe('when a to is marked done', () => {
+    describe('when a to do is marked done', () => {
         it('should show the to do as checked', () => {
             renderComponent({
                 list: [
