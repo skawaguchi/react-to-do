@@ -87,6 +87,7 @@ describe('<ToDoContainer/>', () => {
         it('should update the to do description', () => {
             renderComponent({
                 list: [
+                    getToDoMock(),
                     getToDoMock()
                 ]
             });
@@ -121,7 +122,8 @@ describe('<ToDoContainer/>', () => {
                 list: [
                     getToDoMock({
                         isDone: true
-                    })
+                    }),
+                    getToDoMock()
                 ]
             });
 
@@ -145,6 +147,7 @@ describe('<ToDoContainer/>', () => {
         it('should remove the to do', () => {
             renderComponent({
                 list: [
+                    getToDoMock(),
                     getToDoMock()
                 ]
             });
@@ -160,7 +163,7 @@ describe('<ToDoContainer/>', () => {
 
             const newListData = component.find(ToDoList).props().list;
 
-            expect(newListData.length).toEqual(0);
+            expect(newListData.length).toEqual(1);
         });
     });
 });
