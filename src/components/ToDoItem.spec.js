@@ -36,7 +36,7 @@ describe('<ToDoItem/>', () => {
         });
 
         it('should have a container with a identifying class name and a placeholder', () => {
-            expect(component.type()).toEqual('div');
+            expect(component.type()).toEqual('li');
             expect(component.hasClass('to-do-item')).toEqual(true);
         });
 

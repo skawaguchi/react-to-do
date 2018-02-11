@@ -7,7 +7,7 @@ function changeHandler(handler, id, event) {
 
 export function ToDoItem(props) {
     return (
-        <div className='to-do-item'>
+        <li className='to-do-item'>
             <input
                 checked={props.isDone}
                 className='checkbox'
@@ -28,7 +28,7 @@ export function ToDoItem(props) {
             >
                 {'Remove'}
             </button>
-        </div>
+        </li>
     );
 }
 
