@@ -1,3 +1,30 @@
 .to-do-app {
     font-family: Helvetica, Arial, sans-serif;
 }
+
+input[type=text],
+button {
+    font-size: 16px;
+}
+
+button {
+    margin-left: 5px;
+}
+
+ul.to-do-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul.to-do-list li {
+    margin-bottom: 5px;
+}
+
+input.description {
+    border-width: 0;
+}
+
+input.checkbox:checked + input.description {
+    color: #969696;
+    text-decoration: line-through;
+}
