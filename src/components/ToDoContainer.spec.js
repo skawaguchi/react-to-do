@@ -6,32 +6,63 @@ import { ToDoContainer } from './ToDoContainer';
 import { AddToDo } from './AddToDo';
 import { ToDoList } from './ToDoList';
 
+import { getToDoMock } from '../mock-utils';
+
 describe('<ToDoContainer/>', () => {
     let component;
+    let props;
 
-    function renderComponent() {
-        component = shallow(<ToDoContainer/>);
+    function renderComponent(overrides) {
+        props = {
+            ...overrides
+        };
+
+        component = shallow(<ToDoContainer {...props}/>);
     }
 
-    beforeEach(() => {
-        renderComponent();
+    describe('Given the component renders', () => {
+        beforeEach(() => {
+            renderComponent();
+        });
+
+        it('should have a container element', () => {
+            expect(component.type()).toEqual('main');
+            expect(component.hasClass('to-do-container')).toEqual(true);
+        });
+
+        it('should have a component to add to do items', () => {
+            const addToDo = component.find(AddToDo);
+
+            expect(addToDo.length).toEqual(1);
+        });
     });
 
-    it('should have a container element', () => {
-        expect(component.type()).toEqual('main');
-        expect(component.hasClass('to-do-container')).toEqual(true);
+    describe('Given a list', () => {
+        it('should set the list', () => {
+            renderComponent({
+                list: [
+                    getToDoMock(),
+                    getToDoMock(),
+                    getToDoMock()
+                ]
+            });
+
+            const list = component.find(ToDoList);
+
+            expect(list.props().list).toEqual(props.list);
+        });
     });
 
-    it('should have a component to add to do items', () => {
-        const addToDo = component.find(AddToDo);
+    describe('Given no list', () => {
+        it('should have a list of to dos with an empty list by default', () => {
+            renderComponent({
+                list: undefined
+            });
 
-        expect(addToDo.length).toEqual(1);
-    });
+            const list = component.find(ToDoList);
 
-    it('should have a list of to dos with an empty list by default', () => {
-        const list = component.find(ToDoList);
-
-        expect(list.props().list).toEqual([]);
+            expect(list.props().list).toEqual([]);
+        });
     });
 
     describe('when a to do is added', () => {
@@ -42,6 +73,38 @@ describe('<ToDoContainer/>', () => {
             const description = 'some description';
 
             add.props().onAddToDo(description);
+
+            component.update();
+
+            const list = component.find(ToDoList);
+            const firstListItem = list.props().list[0];
+
+            expect(firstListItem.description).toEqual(description);
+        });
+    });
+
+    describe('when a to do description is changed', () => {
+        it('should update the to do description', () => {
+            renderComponent({
+                list: [
+                    getToDoMock()
+                ]
+            });
+
+            const listComponent = component.find(ToDoList);
+            const listData = listComponent.props().list;
+
+            const itemId = listData[0].id;
+
+            const description = 'some updated description';
+
+            const event = {
+                target: {
+                    value: description
+                }
+            };
+
+            listComponent.props().onDescriptionChange(itemId, event);
 
             component.update();
 

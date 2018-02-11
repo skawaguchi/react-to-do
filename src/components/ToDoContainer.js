@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import uniqid from 'uniqid';
 
 import { AddToDo } from './AddToDo';
@@ -9,7 +10,7 @@ export class ToDoContainer extends Component {
         super(props);
 
         this.state = {
-            list: []
+            list: props.list || []
         };
     }
 
@@ -29,7 +30,24 @@ export class ToDoContainer extends Component {
     }
 
     onDescriptionChange(id, event) {
+        const newDescription = event.target.value;
 
+        const newList = this.state.list.reduce((list, item) => {
+            if (item.id === id) {
+                list.push({
+                    ...item,
+                    description: newDescription
+                });
+            } else {
+                list.push(item);
+            }
+
+            return list;
+        }, []);
+
+        this.setState({
+            list: newList
+        });
     }
 
     onDoneChange(id, event) {
@@ -44,10 +62,20 @@ export class ToDoContainer extends Component {
                 />
                 <ToDoList
                     list={this.state.list}
-                    onDescriptionChange={this.onDescriptionChange}
-                    onDoneChange={this.onDoneChange}
+                    onDescriptionChange={this.onDescriptionChange.bind(this)}
+                    onDoneChange={this.onDoneChange.bind(this)}
                 />
             </main>
         );
     }
 }
+
+ToDoContainer.propTypes = {
+    list: PropTypes.arrayOf(
+        PropTypes.shape({
+            description: PropTypes.string.isRequired,
+            id: PropTypes.string.isRequired,
+            isDone: PropTypes.bool.isRequired
+        })
+    )
+};
