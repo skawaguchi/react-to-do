@@ -60,9 +60,10 @@
         "verbose": true
     },
     "scripts": {
+        "build": "parcel ./src/index.html --public-url ./",
         "eslint": "npx eslint ./{src}/**/*.js --cache",
         "lint": "yarn eslint && yarn stylelint",
-        "start": "parcel ./src/index.html",
+        "start": "parcel ./src/index.html --out-dir temp",
         "stylelint": "npx stylelint 'src/**/*.css'",
         "test": "jest --coverage",
         "test:watch": "jest --watch",

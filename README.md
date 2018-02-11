@@ -20,3 +20,6 @@ You can also run the most recent distribution version by simply opening `dist/in
 To run the tests once, run `yarn test`. 
 
 To run the tests in watch mode while developing, run `yarn test:watch`.
+
+### Building the Production Release
+To run the tests once, run `yarn build`. This will update the `./dist` directory. Simply open `./dist/index.html` in any browser and the application should run.
