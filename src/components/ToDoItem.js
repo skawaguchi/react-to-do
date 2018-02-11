@@ -18,6 +18,7 @@ export function ToDoItem(props) {
             <input
                 className='description'
                 onChange={changeHandler.bind(null, props.onDescriptionChange, props.id)}
+                placeholder='Enter a description'
                 type='text'
                 value={props.description}
             />

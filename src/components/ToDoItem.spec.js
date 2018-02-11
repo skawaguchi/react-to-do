@@ -34,7 +34,7 @@ describe('<ToDoItem/>', () => {
             renderComponent();
         });
 
-        it('should have a container with a identifying class name', () => {
+        it('should have a container with a identifying class name and a placeholder', () => {
             expect(component.type()).toEqual('div');
             expect(component.hasClass('to-do-item')).toEqual(true);
         });
@@ -51,6 +51,7 @@ describe('<ToDoItem/>', () => {
 
             expect(text.props().type).toEqual('text');
             expect(text.props().value).toEqual(props.description);
+            expect(text.props().placeholder).toEqual('Enter a description');
         });
 
         describe('when the checkbox is toggled', () => {
