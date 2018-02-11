@@ -1,23 +1,14 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Chance from 'chance';
 import sinon from 'sinon';
 
 import { ToDoList } from './ToDoList';
 
 import { ToDoItem } from './ToDoItem';
 
-const chance = new Chance();
-const sandbox = sinon.sandbox.create();
+import { getToDoMock } from '../mock-utils';
 
-function mockToDo(overrides) {
-    return {
-        description: chance.word(),
-        id: chance.hash(),
-        isDone: chance.bool(),
-        ...overrides
-    };
-}
+const sandbox = sinon.sandbox.create();
 
 describe('<ToDoList/>', () => {
     let component;
@@ -26,9 +17,9 @@ describe('<ToDoList/>', () => {
     function renderComponent(overrides) {
         props = {
             list: [
-                mockToDo(),
-                mockToDo(),
-                mockToDo()
+                getToDoMock(),
+                getToDoMock(),
+                getToDoMock()
             ],
             onDescriptionChange: sandbox.stub(),
             onDoneChange: sandbox.stub(),
