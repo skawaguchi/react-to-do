@@ -69,6 +69,18 @@ export class ToDoContainer extends Component {
         });
     }
 
+    onRemove(id) {
+        const newList = this.state.list.filter((item) => {
+            if (item.id !== id) {
+                return item;
+            }
+        });
+
+        this.setState({
+            list: newList
+        });
+    }
+
     render() {
         return (
             <main className='to-do-container'>
@@ -79,6 +91,7 @@ export class ToDoContainer extends Component {
                     list={this.state.list}
                     onDescriptionChange={this.onDescriptionChange.bind(this)}
                     onDoneChange={this.onDoneChange.bind(this)}
+                    onRemove={this.onRemove.bind(this)}
                 />
             </main>
         );

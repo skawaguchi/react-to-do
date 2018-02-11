@@ -23,6 +23,7 @@ describe('<ToDoList/>', () => {
             ],
             onDescriptionChange: sandbox.stub(),
             onDoneChange: sandbox.stub(),
+            onRemove: sandbox.stub(),
             ...overrides
         };
 
@@ -54,6 +55,7 @@ describe('<ToDoList/>', () => {
             expect(child.props().isDone).toEqual(item.isDone);
             expect(child.props().onDescriptionChange).toEqual(props.onDescriptionChange);
             expect(child.props().onDoneChange).toEqual(props.onDoneChange);
+            expect(child.props().onRemove).toEqual(props.onRemove);
         });
     });
 });

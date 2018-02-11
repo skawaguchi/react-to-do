@@ -140,4 +140,27 @@ describe('<ToDoContainer/>', () => {
             expect(firstListItem.isDone).toEqual(false);
         });
     });
+
+    describe('when a to do is removed', () => {
+        it('should remove the to do', () => {
+            renderComponent({
+                list: [
+                    getToDoMock()
+                ]
+            });
+
+            const listComponent = component.find(ToDoList);
+            let listData = listComponent.props().list;
+
+            const firstItemId = listData[0].id;
+
+            listComponent.props().onRemove(firstItemId);
+
+            component.update();
+
+            const newListData = component.find(ToDoList).props().list;
+
+            expect(newListData.length).toEqual(0);
+        });
+    });
 });

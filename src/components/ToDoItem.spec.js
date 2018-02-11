@@ -19,6 +19,7 @@ describe('<ToDoItem/>', () => {
             isDone: chance.bool(),
             onDescriptionChange: sandbox.stub(),
             onDoneChange: sandbox.stub(),
+            onRemove: sandbox.stub(),
             ...overrides
         };
 
@@ -54,6 +55,12 @@ describe('<ToDoItem/>', () => {
             expect(text.props().placeholder).toEqual('Enter a description');
         });
 
+        it('should have a remove button', () => {
+            const button = component.find('button.remove');
+
+            expect(button.text()).toEqual('Remove');
+        });
+
         describe('when the checkbox is toggled', () => {
             it('should call the done change handler', () => {
                 const checkbox = component.find('input.checkbox');
@@ -75,6 +82,18 @@ describe('<ToDoItem/>', () => {
                 text.simulate('change', event);
 
                 sinon.assert.calledWithExactly(props.onDescriptionChange, props.id, event);
+            });
+        });
+
+        describe('when the to do is removed', () => {
+            it('should call the remove handler', () => {
+                const button = component.find('button.remove');
+
+                const event = {};
+
+                button.simulate('click', event);
+
+                sinon.assert.calledWithExactly(props.onRemove, props.id, event);
             });
         });
     });

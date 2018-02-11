@@ -22,6 +22,12 @@ export function ToDoItem(props) {
                 type='text'
                 value={props.description}
             />
+            <button
+                className='remove'
+                onClick={changeHandler.bind(null, props.onRemove, props.id)}
+            >
+                {'Remove'}
+            </button>
         </div>
     );
 }
@@ -31,5 +37,6 @@ ToDoItem.propTypes = {
     id: PropTypes.string.isRequired,
     isDone: PropTypes.bool.isRequired,
     onDescriptionChange: PropTypes.func.isRequired,
-    onDoneChange: PropTypes.func.isRequired
+    onDoneChange: PropTypes.func.isRequired,
+    onRemove: PropTypes.func.isRequired
 };

@@ -16,6 +16,7 @@ export function ToDoList(props) {
                             key={item.id}
                             onDescriptionChange={props.onDescriptionChange}
                             onDoneChange={props.onDoneChange}
+                            onRemove={props.onRemove}
                         />
                     );
                 })
@@ -33,5 +34,6 @@ ToDoList.propTypes = {
         })
     ),
     onDescriptionChange: PropTypes.func.isRequired,
-    onDoneChange: PropTypes.func.isRequired
+    onDoneChange: PropTypes.func.isRequired,
+    onRemove: PropTypes.func.isRequired,
 };
